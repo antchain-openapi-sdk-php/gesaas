@@ -5,12 +5,15 @@ namespace AntChain\GESAAS\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class QueryOrderWithdrawRequest extends Model {
+class QueryOrderRefundRequest extends Model {
     protected $_name = [
         'authToken' => 'auth_token',
         'productInstanceId' => 'product_instance_id',
+        'refundOrderNo' => 'refund_order_no',
     ];
-    public function validate() {}
+    public function validate() {
+        Model::validateRequired('refundOrderNo', $this->refundOrderNo, true);
+    }
     public function toMap() {
         $res = [];
         if (null !== $this->authToken) {
@@ -19,11 +22,14 @@ class QueryOrderWithdrawRequest extends Model {
         if (null !== $this->productInstanceId) {
             $res['product_instance_id'] = $this->productInstanceId;
         }
+        if (null !== $this->refundOrderNo) {
+            $res['refund_order_no'] = $this->refundOrderNo;
+        }
         return $res;
     }
     /**
      * @param array $map
-     * @return QueryOrderWithdrawRequest
+     * @return QueryOrderRefundRequest
      */
     public static function fromMap($map = []) {
         $model = new self();
@@ -32,6 +38,9 @@ class QueryOrderWithdrawRequest extends Model {
         }
         if(isset($map['product_instance_id'])){
             $model->productInstanceId = $map['product_instance_id'];
+        }
+        if(isset($map['refund_order_no'])){
+            $model->refundOrderNo = $map['refund_order_no'];
         }
         return $model;
     }
@@ -45,5 +54,11 @@ class QueryOrderWithdrawRequest extends Model {
      * @var string
      */
     public $productInstanceId;
+
+    // 退款退分账唯一标识
+    /**
+     * @var string
+     */
+    public $refundOrderNo;
 
 }

@@ -5,14 +5,14 @@ namespace AntChain\GESAAS\Models;
 
 use AlibabaCloud\Tea\Model;
 
-use AntChain\GESAAS\Models\VoucherBaseInfoVO;
-
-class BatchqueryRightsprodVoucherResponse extends Model {
+class PushOrderRefundResponse extends Model {
     protected $_name = [
         'reqMsgId' => 'req_msg_id',
         'resultCode' => 'result_code',
         'resultMsg' => 'result_msg',
-        'list' => 'list',
+        'refundRequestNo' => 'refund_request_no',
+        'refundStatus' => 'refund_status',
+        'refundOrderNo' => 'refund_order_no',
     ];
     public function validate() {}
     public function toMap() {
@@ -26,20 +26,20 @@ class BatchqueryRightsprodVoucherResponse extends Model {
         if (null !== $this->resultMsg) {
             $res['result_msg'] = $this->resultMsg;
         }
-        if (null !== $this->list) {
-            $res['list'] = [];
-            if(null !== $this->list && is_array($this->list)){
-                $n = 0;
-                foreach($this->list as $item){
-                    $res['list'][$n++] = null !== $item ? $item->toMap() : $item;
-                }
-            }
+        if (null !== $this->refundRequestNo) {
+            $res['refund_request_no'] = $this->refundRequestNo;
+        }
+        if (null !== $this->refundStatus) {
+            $res['refund_status'] = $this->refundStatus;
+        }
+        if (null !== $this->refundOrderNo) {
+            $res['refund_order_no'] = $this->refundOrderNo;
         }
         return $res;
     }
     /**
      * @param array $map
-     * @return BatchqueryRightsprodVoucherResponse
+     * @return PushOrderRefundResponse
      */
     public static function fromMap($map = []) {
         $model = new self();
@@ -52,14 +52,14 @@ class BatchqueryRightsprodVoucherResponse extends Model {
         if(isset($map['result_msg'])){
             $model->resultMsg = $map['result_msg'];
         }
-        if(isset($map['list'])){
-            if(!empty($map['list'])){
-                $model->list = [];
-                $n = 0;
-                foreach($map['list'] as $item) {
-                    $model->list[$n++] = null !== $item ? VoucherBaseInfoVO::fromMap($item) : $item;
-                }
-            }
+        if(isset($map['refund_request_no'])){
+            $model->refundRequestNo = $map['refund_request_no'];
+        }
+        if(isset($map['refund_status'])){
+            $model->refundStatus = $map['refund_status'];
+        }
+        if(isset($map['refund_order_no'])){
+            $model->refundOrderNo = $map['refund_order_no'];
         }
         return $model;
     }
@@ -81,10 +81,22 @@ class BatchqueryRightsprodVoucherResponse extends Model {
      */
     public $resultMsg;
 
-    // 券基本信息列表
+    // 外部系统传入的退款请求号
     /**
-     * @var VoucherBaseInfoVO[]
+     * @var string
      */
-    public $list;
+    public $refundRequestNo;
+
+    // 退款退分账请求状态， ACCEPT : 受理成功
+    /**
+     * @var string
+     */
+    public $refundStatus;
+
+    // 本次退款退分账唯一标识
+    /**
+     * @var string
+     */
+    public $refundOrderNo;
 
 }

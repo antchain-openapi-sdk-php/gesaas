@@ -1,13 +1,13 @@
 English | [简体中文](README-CN.md)
 
-# Ant Chain GESAAS SDK for PHP
+# Ant Chain ABC SDK for PHP
 
 ## Installation
 
 ### Composer
 
 ```bash
-composer require antchain/gesaas
+composer require antchain/GESAAS
 ```
 
 ## Issues

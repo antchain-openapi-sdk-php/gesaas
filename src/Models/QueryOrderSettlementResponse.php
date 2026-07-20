@@ -1,13 +1,99 @@
 <?php
 
 // This file is auto-generated, don't edit it. Thanks.
-
 namespace AntChain\GESAAS\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class QueryOrderSettlementResponse extends Model
-{
+use AntChain\GESAAS\Models\OrderPayInfo;
+use AntChain\GESAAS\Models\OrderSplitInfo;
+
+class QueryOrderSettlementResponse extends Model {
+    protected $_name = [
+        'reqMsgId' => 'req_msg_id',
+        'resultCode' => 'result_code',
+        'resultMsg' => 'result_msg',
+        'outProductId' => 'out_product_id',
+        'totalAmount' => 'total_amount',
+        'orderCreateTime' => 'order_create_time',
+        'paySubject' => 'pay_subject',
+        'tradeNo' => 'trade_no',
+        'orderPayInfo' => 'order_pay_info',
+        'orderAplitInfo' => 'order_aplit_info',
+    ];
+    public function validate() {}
+    public function toMap() {
+        $res = [];
+        if (null !== $this->reqMsgId) {
+            $res['req_msg_id'] = $this->reqMsgId;
+        }
+        if (null !== $this->resultCode) {
+            $res['result_code'] = $this->resultCode;
+        }
+        if (null !== $this->resultMsg) {
+            $res['result_msg'] = $this->resultMsg;
+        }
+        if (null !== $this->outProductId) {
+            $res['out_product_id'] = $this->outProductId;
+        }
+        if (null !== $this->totalAmount) {
+            $res['total_amount'] = $this->totalAmount;
+        }
+        if (null !== $this->orderCreateTime) {
+            $res['order_create_time'] = $this->orderCreateTime;
+        }
+        if (null !== $this->paySubject) {
+            $res['pay_subject'] = $this->paySubject;
+        }
+        if (null !== $this->tradeNo) {
+            $res['trade_no'] = $this->tradeNo;
+        }
+        if (null !== $this->orderPayInfo) {
+            $res['order_pay_info'] = null !== $this->orderPayInfo ? $this->orderPayInfo->toMap() : null;
+        }
+        if (null !== $this->orderAplitInfo) {
+            $res['order_aplit_info'] = null !== $this->orderAplitInfo ? $this->orderAplitInfo->toMap() : null;
+        }
+        return $res;
+    }
+    /**
+     * @param array $map
+     * @return QueryOrderSettlementResponse
+     */
+    public static function fromMap($map = []) {
+        $model = new self();
+        if(isset($map['req_msg_id'])){
+            $model->reqMsgId = $map['req_msg_id'];
+        }
+        if(isset($map['result_code'])){
+            $model->resultCode = $map['result_code'];
+        }
+        if(isset($map['result_msg'])){
+            $model->resultMsg = $map['result_msg'];
+        }
+        if(isset($map['out_product_id'])){
+            $model->outProductId = $map['out_product_id'];
+        }
+        if(isset($map['total_amount'])){
+            $model->totalAmount = $map['total_amount'];
+        }
+        if(isset($map['order_create_time'])){
+            $model->orderCreateTime = $map['order_create_time'];
+        }
+        if(isset($map['pay_subject'])){
+            $model->paySubject = $map['pay_subject'];
+        }
+        if(isset($map['trade_no'])){
+            $model->tradeNo = $map['trade_no'];
+        }
+        if(isset($map['order_pay_info'])){
+            $model->orderPayInfo = OrderPayInfo::fromMap($map['order_pay_info']);
+        }
+        if(isset($map['order_aplit_info'])){
+            $model->orderAplitInfo = OrderSplitInfo::fromMap($map['order_aplit_info']);
+        }
+        return $model;
+    }
     // 请求唯一ID，用于链路跟踪和问题排查
     /**
      * @var string
@@ -26,152 +112,46 @@ class QueryOrderSettlementResponse extends Model
      */
     public $resultMsg;
 
-    // 分账受理时间，格式为yyyy-MM-dd HH:mm:ss
+    // 商家产品唯一编码，64个字符以内
     /**
      * @var string
      */
-    public $splitRequestTime;
+    public $outProductId;
 
-    // 分账明细
+    // 订单金额，单位：分（如 990 表示 9.90元）
     /**
-     * @var SettleOrderRoyaltyDetail[]
+     * @var int
      */
-    public $splitDetailList;
+    public $totalAmount;
 
-    // 支付宝 平台订单号
+    // 订单创建时间，格式为yyyy-MM-dd HH:mm:ss
+    /**
+     * @var string
+     */
+    public $orderCreateTime;
+
+    // 订单支付标题， 150个字符以内
+    /**
+     * @var string
+     */
+    public $paySubject;
+
+    // 支付宝支付订单号，用于拉起主动支付页面
     /**
      * @var string
      */
     public $tradeNo;
 
-    // 外部订单号(同一个outProductId唯一)
+    // 支付详情
     /**
-     * @var string
+     * @var OrderPayInfo
      */
-    public $outOrderNo;
+    public $orderPayInfo;
 
-    // 分账状态，SUCCESS成功，FAIL失败，PROCESSING处理中
+    // 分账详情
     /**
-     * @var string
+     * @var OrderSplitInfo
      */
-    public $splitStatus;
+    public $orderAplitInfo;
 
-    // 分账失败原因
-    /**
-     * @var string
-     */
-    public $splitFailReason;
-
-    // 分账单号
-    /**
-     * @var string
-     */
-    public $settleNo;
-    protected $_name = [
-        'reqMsgId'         => 'req_msg_id',
-        'resultCode'       => 'result_code',
-        'resultMsg'        => 'result_msg',
-        'splitRequestTime' => 'split_request_time',
-        'splitDetailList'  => 'split_detail_list',
-        'tradeNo'          => 'trade_no',
-        'outOrderNo'       => 'out_order_no',
-        'splitStatus'      => 'split_status',
-        'splitFailReason'  => 'split_fail_reason',
-        'settleNo'         => 'settle_no',
-    ];
-
-    public function validate()
-    {
-    }
-
-    public function toMap()
-    {
-        $res = [];
-        if (null !== $this->reqMsgId) {
-            $res['req_msg_id'] = $this->reqMsgId;
-        }
-        if (null !== $this->resultCode) {
-            $res['result_code'] = $this->resultCode;
-        }
-        if (null !== $this->resultMsg) {
-            $res['result_msg'] = $this->resultMsg;
-        }
-        if (null !== $this->splitRequestTime) {
-            $res['split_request_time'] = $this->splitRequestTime;
-        }
-        if (null !== $this->splitDetailList) {
-            $res['split_detail_list'] = [];
-            if (null !== $this->splitDetailList && \is_array($this->splitDetailList)) {
-                $n = 0;
-                foreach ($this->splitDetailList as $item) {
-                    $res['split_detail_list'][$n++] = null !== $item ? $item->toMap() : $item;
-                }
-            }
-        }
-        if (null !== $this->tradeNo) {
-            $res['trade_no'] = $this->tradeNo;
-        }
-        if (null !== $this->outOrderNo) {
-            $res['out_order_no'] = $this->outOrderNo;
-        }
-        if (null !== $this->splitStatus) {
-            $res['split_status'] = $this->splitStatus;
-        }
-        if (null !== $this->splitFailReason) {
-            $res['split_fail_reason'] = $this->splitFailReason;
-        }
-        if (null !== $this->settleNo) {
-            $res['settle_no'] = $this->settleNo;
-        }
-
-        return $res;
-    }
-
-    /**
-     * @param array $map
-     *
-     * @return QueryOrderSettlementResponse
-     */
-    public static function fromMap($map = [])
-    {
-        $model = new self();
-        if (isset($map['req_msg_id'])) {
-            $model->reqMsgId = $map['req_msg_id'];
-        }
-        if (isset($map['result_code'])) {
-            $model->resultCode = $map['result_code'];
-        }
-        if (isset($map['result_msg'])) {
-            $model->resultMsg = $map['result_msg'];
-        }
-        if (isset($map['split_request_time'])) {
-            $model->splitRequestTime = $map['split_request_time'];
-        }
-        if (isset($map['split_detail_list'])) {
-            if (!empty($map['split_detail_list'])) {
-                $model->splitDetailList = [];
-                $n                      = 0;
-                foreach ($map['split_detail_list'] as $item) {
-                    $model->splitDetailList[$n++] = null !== $item ? SettleOrderRoyaltyDetail::fromMap($item) : $item;
-                }
-            }
-        }
-        if (isset($map['trade_no'])) {
-            $model->tradeNo = $map['trade_no'];
-        }
-        if (isset($map['out_order_no'])) {
-            $model->outOrderNo = $map['out_order_no'];
-        }
-        if (isset($map['split_status'])) {
-            $model->splitStatus = $map['split_status'];
-        }
-        if (isset($map['split_fail_reason'])) {
-            $model->splitFailReason = $map['split_fail_reason'];
-        }
-        if (isset($map['settle_no'])) {
-            $model->settleNo = $map['settle_no'];
-        }
-
-        return $model;
-    }
 }

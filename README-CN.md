@@ -2,14 +2,14 @@
 
 ![](https://aliyunsdk-pages.alicdn.com/icons/AlibabaCloud.svg)
 
-# Ant Chain GESAAS SDK for PHP
+# Ant Chain ABC SDK for PHP
 
 ## 安装
 
 ### Composer
 
 ```bash
-composer require antchain/gesaas
+composer require antchain/GESAAS
 ```
 
 ## 问题

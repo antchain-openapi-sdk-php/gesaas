@@ -5,10 +5,9 @@ namespace AntChain\GESAAS\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class SettleOrderRoyaltyDetail extends Model {
+class RefundDetailItemList extends Model {
     protected $_name = [
         'amount' => 'amount',
-        'executeTime' => 'execute_time',
         'transOutAccount' => 'trans_out_account',
         'transInAccount' => 'trans_in_account',
     ];
@@ -17,9 +16,6 @@ class SettleOrderRoyaltyDetail extends Model {
         $res = [];
         if (null !== $this->amount) {
             $res['amount'] = $this->amount;
-        }
-        if (null !== $this->executeTime) {
-            $res['execute_time'] = $this->executeTime;
         }
         if (null !== $this->transOutAccount) {
             $res['trans_out_account'] = $this->transOutAccount;
@@ -31,15 +27,12 @@ class SettleOrderRoyaltyDetail extends Model {
     }
     /**
      * @param array $map
-     * @return SettleOrderRoyaltyDetail
+     * @return RefundDetailItemList
      */
     public static function fromMap($map = []) {
         $model = new self();
         if(isset($map['amount'])){
             $model->amount = $map['amount'];
-        }
-        if(isset($map['execute_time'])){
-            $model->executeTime = $map['execute_time'];
         }
         if(isset($map['trans_out_account'])){
             $model->transOutAccount = $map['trans_out_account'];
@@ -49,30 +42,23 @@ class SettleOrderRoyaltyDetail extends Model {
         }
         return $model;
     }
-    // 分账金额，单位：分
+    // 退款退分账金额，单位为分
     /**
-     * @example 1000
+     * @example 990
      * @var int
      */
     public $amount;
 
-    // 分账执行时间
+    // 退款退分账支出账号
     /**
-     * @example 2021-07-30 12:00:00
-     * @var string
-     */
-    public $executeTime;
-
-    // 分账转出账号
-    /**
-     * @example 2088111111111111
+     * @example 2088101126765726
      * @var string
      */
     public $transOutAccount;
 
-    // 分账转入账号
+    // 退款退分账转入账号
     /**
-     * @example 2088111111111111
+     * @example 2088101126765726
      * @var string
      */
     public $transInAccount;

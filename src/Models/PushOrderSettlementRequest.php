@@ -1,13 +1,102 @@
 <?php
 
 // This file is auto-generated, don't edit it. Thanks.
-
 namespace AntChain\GESAAS\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class PushOrderSettlementRequest extends Model
-{
+class PushOrderSettlementRequest extends Model {
+    protected $_name = [
+        'authToken' => 'auth_token',
+        'productInstanceId' => 'product_instance_id',
+        'outProductId' => 'out_product_id',
+        'outOrderNo' => 'out_order_no',
+        'totalAmount' => 'total_amount',
+        'orderType' => 'order_type',
+        'extInfo' => 'ext_info',
+        'orderCreateTime' => 'order_create_time',
+        'paySubject' => 'pay_subject',
+        'payChannel' => 'pay_channel',
+    ];
+    public function validate() {
+        Model::validateRequired('outProductId', $this->outProductId, true);
+        Model::validateRequired('outOrderNo', $this->outOrderNo, true);
+        Model::validateRequired('totalAmount', $this->totalAmount, true);
+        Model::validateRequired('orderCreateTime', $this->orderCreateTime, true);
+        Model::validateRequired('paySubject', $this->paySubject, true);
+    }
+    public function toMap() {
+        $res = [];
+        if (null !== $this->authToken) {
+            $res['auth_token'] = $this->authToken;
+        }
+        if (null !== $this->productInstanceId) {
+            $res['product_instance_id'] = $this->productInstanceId;
+        }
+        if (null !== $this->outProductId) {
+            $res['out_product_id'] = $this->outProductId;
+        }
+        if (null !== $this->outOrderNo) {
+            $res['out_order_no'] = $this->outOrderNo;
+        }
+        if (null !== $this->totalAmount) {
+            $res['total_amount'] = $this->totalAmount;
+        }
+        if (null !== $this->orderType) {
+            $res['order_type'] = $this->orderType;
+        }
+        if (null !== $this->extInfo) {
+            $res['ext_info'] = $this->extInfo;
+        }
+        if (null !== $this->orderCreateTime) {
+            $res['order_create_time'] = $this->orderCreateTime;
+        }
+        if (null !== $this->paySubject) {
+            $res['pay_subject'] = $this->paySubject;
+        }
+        if (null !== $this->payChannel) {
+            $res['pay_channel'] = $this->payChannel;
+        }
+        return $res;
+    }
+    /**
+     * @param array $map
+     * @return PushOrderSettlementRequest
+     */
+    public static function fromMap($map = []) {
+        $model = new self();
+        if(isset($map['auth_token'])){
+            $model->authToken = $map['auth_token'];
+        }
+        if(isset($map['product_instance_id'])){
+            $model->productInstanceId = $map['product_instance_id'];
+        }
+        if(isset($map['out_product_id'])){
+            $model->outProductId = $map['out_product_id'];
+        }
+        if(isset($map['out_order_no'])){
+            $model->outOrderNo = $map['out_order_no'];
+        }
+        if(isset($map['total_amount'])){
+            $model->totalAmount = $map['total_amount'];
+        }
+        if(isset($map['order_type'])){
+            $model->orderType = $map['order_type'];
+        }
+        if(isset($map['ext_info'])){
+            $model->extInfo = $map['ext_info'];
+        }
+        if(isset($map['order_create_time'])){
+            $model->orderCreateTime = $map['order_create_time'];
+        }
+        if(isset($map['pay_subject'])){
+            $model->paySubject = $map['pay_subject'];
+        }
+        if(isset($map['pay_channel'])){
+            $model->payChannel = $map['pay_channel'];
+        }
+        return $model;
+    }
     // OAuth模式下的授权token
     /**
      * @var string
@@ -31,113 +120,40 @@ class PushOrderSettlementRequest extends Model
      */
     public $outOrderNo;
 
-    // 支付宝/微信/其他  平台订单号
+    // 订单支付金额(同分账金额)，单位：分（如 990 表示 9.90元）
     /**
-     * @var string
+     * @var int
      */
-    public $tradeNo;
+    public $totalAmount;
 
-    // 支付渠道类型，枚举值：ALIPAY / WECHAT
+    // 支付渠道类型，默认：ALIPAY
     /**
      * @var string
      */
     public $orderType;
-
-    // 订单金额，单位：分（如 990 表示 9.90元）
-    /**
-     * @var int
-     */
-    public $orderAmount;
 
     // 扩展参数，JSONString格式
     /**
      * @var string
      */
     public $extInfo;
-    protected $_name = [
-        'authToken'         => 'auth_token',
-        'productInstanceId' => 'product_instance_id',
-        'outProductId'      => 'out_product_id',
-        'outOrderNo'        => 'out_order_no',
-        'tradeNo'           => 'trade_no',
-        'orderType'         => 'order_type',
-        'orderAmount'       => 'order_amount',
-        'extInfo'           => 'ext_info',
-    ];
 
-    public function validate()
-    {
-        Model::validateRequired('outProductId', $this->outProductId, true);
-        Model::validateRequired('outOrderNo', $this->outOrderNo, true);
-        Model::validateRequired('tradeNo', $this->tradeNo, true);
-        Model::validateRequired('orderType', $this->orderType, true);
-        Model::validateRequired('orderAmount', $this->orderAmount, true);
-    }
-
-    public function toMap()
-    {
-        $res = [];
-        if (null !== $this->authToken) {
-            $res['auth_token'] = $this->authToken;
-        }
-        if (null !== $this->productInstanceId) {
-            $res['product_instance_id'] = $this->productInstanceId;
-        }
-        if (null !== $this->outProductId) {
-            $res['out_product_id'] = $this->outProductId;
-        }
-        if (null !== $this->outOrderNo) {
-            $res['out_order_no'] = $this->outOrderNo;
-        }
-        if (null !== $this->tradeNo) {
-            $res['trade_no'] = $this->tradeNo;
-        }
-        if (null !== $this->orderType) {
-            $res['order_type'] = $this->orderType;
-        }
-        if (null !== $this->orderAmount) {
-            $res['order_amount'] = $this->orderAmount;
-        }
-        if (null !== $this->extInfo) {
-            $res['ext_info'] = $this->extInfo;
-        }
-
-        return $res;
-    }
-
+    // 订单创建时间，格式为yyyy-MM-dd HH:mm:ss
     /**
-     * @param array $map
-     *
-     * @return PushOrderSettlementRequest
+     * @var string
      */
-    public static function fromMap($map = [])
-    {
-        $model = new self();
-        if (isset($map['auth_token'])) {
-            $model->authToken = $map['auth_token'];
-        }
-        if (isset($map['product_instance_id'])) {
-            $model->productInstanceId = $map['product_instance_id'];
-        }
-        if (isset($map['out_product_id'])) {
-            $model->outProductId = $map['out_product_id'];
-        }
-        if (isset($map['out_order_no'])) {
-            $model->outOrderNo = $map['out_order_no'];
-        }
-        if (isset($map['trade_no'])) {
-            $model->tradeNo = $map['trade_no'];
-        }
-        if (isset($map['order_type'])) {
-            $model->orderType = $map['order_type'];
-        }
-        if (isset($map['order_amount'])) {
-            $model->orderAmount = $map['order_amount'];
-        }
-        if (isset($map['ext_info'])) {
-            $model->extInfo = $map['ext_info'];
-        }
+    public $orderCreateTime;
 
-        return $model;
-    }
+    // 订单支付标题， 150个字符以内
+    /**
+     * @var string
+     */
+    public $paySubject;
+
+    // 支付渠道，默认：JSAPI
+    /**
+     * @var string
+     */
+    public $payChannel;
+
 }

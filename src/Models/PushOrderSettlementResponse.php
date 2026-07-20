@@ -1,13 +1,54 @@
 <?php
 
 // This file is auto-generated, don't edit it. Thanks.
-
 namespace AntChain\GESAAS\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class PushOrderSettlementResponse extends Model
-{
+class PushOrderSettlementResponse extends Model {
+    protected $_name = [
+        'reqMsgId' => 'req_msg_id',
+        'resultCode' => 'result_code',
+        'resultMsg' => 'result_msg',
+        'tradeNo' => 'trade_no',
+    ];
+    public function validate() {}
+    public function toMap() {
+        $res = [];
+        if (null !== $this->reqMsgId) {
+            $res['req_msg_id'] = $this->reqMsgId;
+        }
+        if (null !== $this->resultCode) {
+            $res['result_code'] = $this->resultCode;
+        }
+        if (null !== $this->resultMsg) {
+            $res['result_msg'] = $this->resultMsg;
+        }
+        if (null !== $this->tradeNo) {
+            $res['trade_no'] = $this->tradeNo;
+        }
+        return $res;
+    }
+    /**
+     * @param array $map
+     * @return PushOrderSettlementResponse
+     */
+    public static function fromMap($map = []) {
+        $model = new self();
+        if(isset($map['req_msg_id'])){
+            $model->reqMsgId = $map['req_msg_id'];
+        }
+        if(isset($map['result_code'])){
+            $model->resultCode = $map['result_code'];
+        }
+        if(isset($map['result_msg'])){
+            $model->resultMsg = $map['result_msg'];
+        }
+        if(isset($map['trade_no'])){
+            $model->tradeNo = $map['trade_no'];
+        }
+        return $model;
+    }
     // 请求唯一ID，用于链路跟踪和问题排查
     /**
      * @var string
@@ -32,82 +73,4 @@ class PushOrderSettlementResponse extends Model
      */
     public $tradeNo;
 
-    // 分账单号，可以根据该单号查询单次分账请求执行结果
-    /**
-     * @var string
-     */
-    public $settleNo;
-
-    // 外部订单号(商家)
-    /**
-     * @var string
-     */
-    public $outOrderNo;
-    protected $_name = [
-        'reqMsgId'   => 'req_msg_id',
-        'resultCode' => 'result_code',
-        'resultMsg'  => 'result_msg',
-        'tradeNo'    => 'trade_no',
-        'settleNo'   => 'settle_no',
-        'outOrderNo' => 'out_order_no',
-    ];
-
-    public function validate()
-    {
-    }
-
-    public function toMap()
-    {
-        $res = [];
-        if (null !== $this->reqMsgId) {
-            $res['req_msg_id'] = $this->reqMsgId;
-        }
-        if (null !== $this->resultCode) {
-            $res['result_code'] = $this->resultCode;
-        }
-        if (null !== $this->resultMsg) {
-            $res['result_msg'] = $this->resultMsg;
-        }
-        if (null !== $this->tradeNo) {
-            $res['trade_no'] = $this->tradeNo;
-        }
-        if (null !== $this->settleNo) {
-            $res['settle_no'] = $this->settleNo;
-        }
-        if (null !== $this->outOrderNo) {
-            $res['out_order_no'] = $this->outOrderNo;
-        }
-
-        return $res;
-    }
-
-    /**
-     * @param array $map
-     *
-     * @return PushOrderSettlementResponse
-     */
-    public static function fromMap($map = [])
-    {
-        $model = new self();
-        if (isset($map['req_msg_id'])) {
-            $model->reqMsgId = $map['req_msg_id'];
-        }
-        if (isset($map['result_code'])) {
-            $model->resultCode = $map['result_code'];
-        }
-        if (isset($map['result_msg'])) {
-            $model->resultMsg = $map['result_msg'];
-        }
-        if (isset($map['trade_no'])) {
-            $model->tradeNo = $map['trade_no'];
-        }
-        if (isset($map['settle_no'])) {
-            $model->settleNo = $map['settle_no'];
-        }
-        if (isset($map['out_order_no'])) {
-            $model->outOrderNo = $map['out_order_no'];
-        }
-
-        return $model;
-    }
 }
