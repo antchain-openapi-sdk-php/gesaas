@@ -20,6 +20,9 @@ class QueryOrderSettlementResponse extends Model {
         'tradeNo' => 'trade_no',
         'orderPayInfo' => 'order_pay_info',
         'orderAplitInfo' => 'order_aplit_info',
+        'payChannelUserId' => 'pay_channel_user_id',
+        'payChannel' => 'pay_channel',
+        'payProduct' => 'pay_product',
     ];
     public function validate() {}
     public function toMap() {
@@ -53,6 +56,15 @@ class QueryOrderSettlementResponse extends Model {
         }
         if (null !== $this->orderAplitInfo) {
             $res['order_aplit_info'] = null !== $this->orderAplitInfo ? $this->orderAplitInfo->toMap() : null;
+        }
+        if (null !== $this->payChannelUserId) {
+            $res['pay_channel_user_id'] = $this->payChannelUserId;
+        }
+        if (null !== $this->payChannel) {
+            $res['pay_channel'] = $this->payChannel;
+        }
+        if (null !== $this->payProduct) {
+            $res['pay_product'] = $this->payProduct;
         }
         return $res;
     }
@@ -91,6 +103,15 @@ class QueryOrderSettlementResponse extends Model {
         }
         if(isset($map['order_aplit_info'])){
             $model->orderAplitInfo = OrderSplitInfo::fromMap($map['order_aplit_info']);
+        }
+        if(isset($map['pay_channel_user_id'])){
+            $model->payChannelUserId = $map['pay_channel_user_id'];
+        }
+        if(isset($map['pay_channel'])){
+            $model->payChannel = $map['pay_channel'];
+        }
+        if(isset($map['pay_product'])){
+            $model->payProduct = $map['pay_product'];
         }
         return $model;
     }
@@ -153,5 +174,23 @@ class QueryOrderSettlementResponse extends Model {
      * @var OrderSplitInfo
      */
     public $orderAplitInfo;
+
+    // 支付渠道是ALIPAY场景下-支付宝用户2088xxxx
+    /**
+     * @var string
+     */
+    public $payChannelUserId;
+
+    // 支付渠道，默认：ALIPAY
+    /**
+     * @var string
+     */
+    public $payChannel;
+
+    // 支付产品，默认：JSAPI
+    /**
+     * @var string
+     */
+    public $payProduct;
 
 }

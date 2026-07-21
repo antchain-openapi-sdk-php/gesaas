@@ -12,11 +12,12 @@ class PushOrderSettlementRequest extends Model {
         'outProductId' => 'out_product_id',
         'outOrderNo' => 'out_order_no',
         'totalAmount' => 'total_amount',
-        'orderType' => 'order_type',
+        'payProduct' => 'pay_product',
         'extInfo' => 'ext_info',
         'orderCreateTime' => 'order_create_time',
         'paySubject' => 'pay_subject',
         'payChannel' => 'pay_channel',
+        'payChannelUserId' => 'pay_channel_user_id',
     ];
     public function validate() {
         Model::validateRequired('outProductId', $this->outProductId, true);
@@ -24,6 +25,7 @@ class PushOrderSettlementRequest extends Model {
         Model::validateRequired('totalAmount', $this->totalAmount, true);
         Model::validateRequired('orderCreateTime', $this->orderCreateTime, true);
         Model::validateRequired('paySubject', $this->paySubject, true);
+        Model::validateRequired('payChannelUserId', $this->payChannelUserId, true);
     }
     public function toMap() {
         $res = [];
@@ -42,8 +44,8 @@ class PushOrderSettlementRequest extends Model {
         if (null !== $this->totalAmount) {
             $res['total_amount'] = $this->totalAmount;
         }
-        if (null !== $this->orderType) {
-            $res['order_type'] = $this->orderType;
+        if (null !== $this->payProduct) {
+            $res['pay_product'] = $this->payProduct;
         }
         if (null !== $this->extInfo) {
             $res['ext_info'] = $this->extInfo;
@@ -56,6 +58,9 @@ class PushOrderSettlementRequest extends Model {
         }
         if (null !== $this->payChannel) {
             $res['pay_channel'] = $this->payChannel;
+        }
+        if (null !== $this->payChannelUserId) {
+            $res['pay_channel_user_id'] = $this->payChannelUserId;
         }
         return $res;
     }
@@ -80,8 +85,8 @@ class PushOrderSettlementRequest extends Model {
         if(isset($map['total_amount'])){
             $model->totalAmount = $map['total_amount'];
         }
-        if(isset($map['order_type'])){
-            $model->orderType = $map['order_type'];
+        if(isset($map['pay_product'])){
+            $model->payProduct = $map['pay_product'];
         }
         if(isset($map['ext_info'])){
             $model->extInfo = $map['ext_info'];
@@ -94,6 +99,9 @@ class PushOrderSettlementRequest extends Model {
         }
         if(isset($map['pay_channel'])){
             $model->payChannel = $map['pay_channel'];
+        }
+        if(isset($map['pay_channel_user_id'])){
+            $model->payChannelUserId = $map['pay_channel_user_id'];
         }
         return $model;
     }
@@ -126,11 +134,11 @@ class PushOrderSettlementRequest extends Model {
      */
     public $totalAmount;
 
-    // 支付渠道类型，默认：ALIPAY
+    // 支付产品，默认：JSAPI
     /**
      * @var string
      */
-    public $orderType;
+    public $payProduct;
 
     // 扩展参数，JSONString格式
     /**
@@ -150,10 +158,16 @@ class PushOrderSettlementRequest extends Model {
      */
     public $paySubject;
 
-    // 支付渠道，默认：JSAPI
+    // 支付渠道，默认：ALIPAY
     /**
      * @var string
      */
     public $payChannel;
+
+    // 支付渠道是ALIPAY场景下传入支付宝用户2088xxxx
+    /**
+     * @var string
+     */
+    public $payChannelUserId;
 
 }
