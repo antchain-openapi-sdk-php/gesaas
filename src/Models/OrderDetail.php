@@ -6,9 +6,17 @@ namespace AntChain\GESAAS\Models;
 use AlibabaCloud\Tea\Model;
 
 class OrderDetail extends Model {
-    public function validate() {}
+    protected $_name = [
+        'voucherCode' => 'voucher_code',
+    ];
+    public function validate() {
+        Model::validateRequired('voucherCode', $this->voucherCode, true);
+    }
     public function toMap() {
         $res = [];
+        if (null !== $this->voucherCode) {
+            $res['voucher_code'] = $this->voucherCode;
+        }
         return $res;
     }
     /**
@@ -17,6 +25,16 @@ class OrderDetail extends Model {
      */
     public static function fromMap($map = []) {
         $model = new self();
+        if(isset($map['voucher_code'])){
+            $model->voucherCode = $map['voucher_code'];
+        }
         return $model;
     }
+    // 券码
+    /**
+     * @example 1798234932684395
+     * @var string
+     */
+    public $voucherCode;
+
 }

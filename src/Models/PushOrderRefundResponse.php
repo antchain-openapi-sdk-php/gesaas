@@ -12,7 +12,7 @@ class PushOrderRefundResponse extends Model {
         'resultMsg' => 'result_msg',
         'refundRequestNo' => 'refund_request_no',
         'refundStatus' => 'refund_status',
-        'refundOrderNo' => 'refund_order_no',
+        'refundRecordNo' => 'refund_record_no',
     ];
     public function validate() {}
     public function toMap() {
@@ -32,8 +32,8 @@ class PushOrderRefundResponse extends Model {
         if (null !== $this->refundStatus) {
             $res['refund_status'] = $this->refundStatus;
         }
-        if (null !== $this->refundOrderNo) {
-            $res['refund_order_no'] = $this->refundOrderNo;
+        if (null !== $this->refundRecordNo) {
+            $res['refund_record_no'] = $this->refundRecordNo;
         }
         return $res;
     }
@@ -58,8 +58,8 @@ class PushOrderRefundResponse extends Model {
         if(isset($map['refund_status'])){
             $model->refundStatus = $map['refund_status'];
         }
-        if(isset($map['refund_order_no'])){
-            $model->refundOrderNo = $map['refund_order_no'];
+        if(isset($map['refund_record_no'])){
+            $model->refundRecordNo = $map['refund_record_no'];
         }
         return $model;
     }
@@ -97,6 +97,6 @@ class PushOrderRefundResponse extends Model {
     /**
      * @var string
      */
-    public $refundOrderNo;
+    public $refundRecordNo;
 
 }

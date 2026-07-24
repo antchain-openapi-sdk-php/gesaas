@@ -173,7 +173,7 @@ class Client {
                     "req_msg_id" => UtilClient::getNonce(),
                     "access_key" => $this->_accessKeyId,
                     "base_sdk_version" => "TeaSDK-2.0",
-                    "sdk_version" => "1.3.10",
+                    "sdk_version" => "1.3.12",
                     "_prod_code" => "GESAAS",
                     "_prod_channel" => "default"
                 ];
@@ -395,7 +395,7 @@ class Client {
 
     /**
      * Description: 权益中心权益发放
-     * Summary: 权益发放
+     * Summary: 权益中心权益发放
      * @param SubmitRightsprodGrantRequest $request
      * @return SubmitRightsprodGrantResponse
      */
@@ -407,7 +407,7 @@ class Client {
 
     /**
      * Description: 权益中心权益发放
-     * Summary: 权益发放
+     * Summary: 权益中心权益发放
      * @param SubmitRightsprodGrantRequest $request
      * @param string[] $headers
      * @param RuntimeOptions $runtime
