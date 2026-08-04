@@ -19,7 +19,7 @@ class QueryOrderSettlementResponse extends Model {
         'paySubject' => 'pay_subject',
         'tradeNo' => 'trade_no',
         'orderPayInfo' => 'order_pay_info',
-        'orderAplitInfo' => 'order_aplit_info',
+        'orderSplitInfo' => 'order_split_info',
         'payChannelUserId' => 'pay_channel_user_id',
         'payChannel' => 'pay_channel',
         'payProduct' => 'pay_product',
@@ -54,8 +54,8 @@ class QueryOrderSettlementResponse extends Model {
         if (null !== $this->orderPayInfo) {
             $res['order_pay_info'] = null !== $this->orderPayInfo ? $this->orderPayInfo->toMap() : null;
         }
-        if (null !== $this->orderAplitInfo) {
-            $res['order_aplit_info'] = null !== $this->orderAplitInfo ? $this->orderAplitInfo->toMap() : null;
+        if (null !== $this->orderSplitInfo) {
+            $res['order_split_info'] = null !== $this->orderSplitInfo ? $this->orderSplitInfo->toMap() : null;
         }
         if (null !== $this->payChannelUserId) {
             $res['pay_channel_user_id'] = $this->payChannelUserId;
@@ -101,8 +101,8 @@ class QueryOrderSettlementResponse extends Model {
         if(isset($map['order_pay_info'])){
             $model->orderPayInfo = OrderPayInfo::fromMap($map['order_pay_info']);
         }
-        if(isset($map['order_aplit_info'])){
-            $model->orderAplitInfo = OrderSplitInfo::fromMap($map['order_aplit_info']);
+        if(isset($map['order_split_info'])){
+            $model->orderSplitInfo = OrderSplitInfo::fromMap($map['order_split_info']);
         }
         if(isset($map['pay_channel_user_id'])){
             $model->payChannelUserId = $map['pay_channel_user_id'];
@@ -173,7 +173,7 @@ class QueryOrderSettlementResponse extends Model {
     /**
      * @var OrderSplitInfo
      */
-    public $orderAplitInfo;
+    public $orderSplitInfo;
 
     // 支付渠道是ALIPAY场景下-支付宝用户2088xxxx
     /**

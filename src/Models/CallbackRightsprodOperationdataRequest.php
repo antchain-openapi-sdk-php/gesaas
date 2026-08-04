@@ -10,17 +10,18 @@ class CallbackRightsprodOperationdataRequest extends Model {
         'authToken' => 'auth_token',
         'productInstanceId' => 'product_instance_id',
         'notifyId' => 'notify_id',
-        'rightsCode' => 'rights_code',
+        'supplyRightsCode' => 'supply_rights_code',
         'voucherCode' => 'voucher_code',
         'bizType' => 'biz_type',
         'payOrderNo' => 'pay_order_no',
         'faceAmount' => 'face_amount',
         'fluxAmount' => 'flux_amount',
         'bizTime' => 'biz_time',
+        'extInfo' => 'ext_info',
     ];
     public function validate() {
         Model::validateRequired('notifyId', $this->notifyId, true);
-        Model::validateRequired('rightsCode', $this->rightsCode, true);
+        Model::validateRequired('supplyRightsCode', $this->supplyRightsCode, true);
         Model::validateRequired('voucherCode', $this->voucherCode, true);
         Model::validateRequired('bizType', $this->bizType, true);
         Model::validateRequired('bizTime', $this->bizTime, true);
@@ -36,8 +37,8 @@ class CallbackRightsprodOperationdataRequest extends Model {
         if (null !== $this->notifyId) {
             $res['notify_id'] = $this->notifyId;
         }
-        if (null !== $this->rightsCode) {
-            $res['rights_code'] = $this->rightsCode;
+        if (null !== $this->supplyRightsCode) {
+            $res['supply_rights_code'] = $this->supplyRightsCode;
         }
         if (null !== $this->voucherCode) {
             $res['voucher_code'] = $this->voucherCode;
@@ -57,6 +58,9 @@ class CallbackRightsprodOperationdataRequest extends Model {
         if (null !== $this->bizTime) {
             $res['biz_time'] = $this->bizTime;
         }
+        if (null !== $this->extInfo) {
+            $res['ext_info'] = $this->extInfo;
+        }
         return $res;
     }
     /**
@@ -74,8 +78,8 @@ class CallbackRightsprodOperationdataRequest extends Model {
         if(isset($map['notify_id'])){
             $model->notifyId = $map['notify_id'];
         }
-        if(isset($map['rights_code'])){
-            $model->rightsCode = $map['rights_code'];
+        if(isset($map['supply_rights_code'])){
+            $model->supplyRightsCode = $map['supply_rights_code'];
         }
         if(isset($map['voucher_code'])){
             $model->voucherCode = $map['voucher_code'];
@@ -94,6 +98,9 @@ class CallbackRightsprodOperationdataRequest extends Model {
         }
         if(isset($map['biz_time'])){
             $model->bizTime = $map['biz_time'];
+        }
+        if(isset($map['ext_info'])){
+            $model->extInfo = $map['ext_info'];
         }
         return $model;
     }
@@ -114,11 +121,11 @@ class CallbackRightsprodOperationdataRequest extends Model {
      */
     public $notifyId;
 
-    // 权益编号
+    // 供应商供应权益编号
     /**
      * @var string
      */
-    public $rightsCode;
+    public $supplyRightsCode;
 
     // 凭证编号
     /**
@@ -155,5 +162,11 @@ class CallbackRightsprodOperationdataRequest extends Model {
      * @var string
      */
     public $bizTime;
+
+    // 业务扩展属性信息
+    /**
+     * @var string
+     */
+    public $extInfo;
 
 }

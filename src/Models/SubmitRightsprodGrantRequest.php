@@ -19,6 +19,8 @@ class SubmitRightsprodGrantRequest extends Model {
         'extInfo' => 'ext_info',
         'grantInfo' => 'grant_info',
         'techTenantId' => 'tech_tenant_id',
+        'openId' => 'open_id',
+        'appId' => 'app_id',
     ];
     public function validate() {
         Model::validateRequired('rightsCode', $this->rightsCode, true);
@@ -63,6 +65,12 @@ class SubmitRightsprodGrantRequest extends Model {
         if (null !== $this->techTenantId) {
             $res['tech_tenant_id'] = $this->techTenantId;
         }
+        if (null !== $this->openId) {
+            $res['open_id'] = $this->openId;
+        }
+        if (null !== $this->appId) {
+            $res['app_id'] = $this->appId;
+        }
         return $res;
     }
     /**
@@ -106,6 +114,12 @@ class SubmitRightsprodGrantRequest extends Model {
         }
         if(isset($map['tech_tenant_id'])){
             $model->techTenantId = $map['tech_tenant_id'];
+        }
+        if(isset($map['open_id'])){
+            $model->openId = $map['open_id'];
+        }
+        if(isset($map['app_id'])){
+            $model->appId = $map['app_id'];
         }
         return $model;
     }
@@ -179,5 +193,17 @@ class SubmitRightsprodGrantRequest extends Model {
      * @var string
      */
     public $techTenantId;
+
+    // 用户openid
+    /**
+     * @var string
+     */
+    public $openId;
+
+    // 应用ID
+    /**
+     * @var string
+     */
+    public $appId;
 
 }
