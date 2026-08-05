@@ -16,7 +16,6 @@ class QueryOrderRefundResponse extends Model {
         'refundRequestNo' => 'refund_request_no',
         'refundStatus' => 'refund_status',
         'refundAmount' => 'refund_amount',
-        'sendBackAmount' => 'send_back_amount',
         'refundFailedReason' => 'refund_failed_reason',
         'refundTime' => 'refund_time',
         'refundDetailItemList' => 'refund_detail_item_list',
@@ -44,9 +43,6 @@ class QueryOrderRefundResponse extends Model {
         }
         if (null !== $this->refundAmount) {
             $res['refund_amount'] = $this->refundAmount;
-        }
-        if (null !== $this->sendBackAmount) {
-            $res['send_back_amount'] = $this->sendBackAmount;
         }
         if (null !== $this->refundFailedReason) {
             $res['refund_failed_reason'] = $this->refundFailedReason;
@@ -91,9 +87,6 @@ class QueryOrderRefundResponse extends Model {
         }
         if(isset($map['refund_amount'])){
             $model->refundAmount = $map['refund_amount'];
-        }
-        if(isset($map['send_back_amount'])){
-            $model->sendBackAmount = $map['send_back_amount'];
         }
         if(isset($map['refund_failed_reason'])){
             $model->refundFailedReason = $map['refund_failed_reason'];
@@ -157,13 +150,6 @@ class QueryOrderRefundResponse extends Model {
      * @var int
      */
     public $refundAmount;
-
-    // 本次退款申请的实际退款金额，单位：分
-    // 条件返回：refundStatus=SUCCESS 返回
-    /**
-     * @var int
-     */
-    public $sendBackAmount;
 
     // 退款退分账失败原因，条件返回：refundStatus=FAILED 返回
     /**
