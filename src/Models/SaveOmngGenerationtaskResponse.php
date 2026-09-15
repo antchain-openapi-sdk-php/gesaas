@@ -5,13 +5,13 @@ namespace AntChain\GESAAS\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class PushOrderSettlementResponse extends Model {
+class SaveOmngGenerationtaskResponse extends Model {
     protected $_name = [
         'reqMsgId' => 'req_msg_id',
         'resultCode' => 'result_code',
         'resultMsg' => 'result_msg',
-        'tradeNo' => 'trade_no',
-        'prePayTn' => 'pre_pay_tn',
+        'result' => 'result',
+        'failMsg' => 'fail_msg',
     ];
     public function validate() {}
     public function toMap() {
@@ -25,17 +25,17 @@ class PushOrderSettlementResponse extends Model {
         if (null !== $this->resultMsg) {
             $res['result_msg'] = $this->resultMsg;
         }
-        if (null !== $this->tradeNo) {
-            $res['trade_no'] = $this->tradeNo;
+        if (null !== $this->result) {
+            $res['result'] = $this->result;
         }
-        if (null !== $this->prePayTn) {
-            $res['pre_pay_tn'] = $this->prePayTn;
+        if (null !== $this->failMsg) {
+            $res['fail_msg'] = $this->failMsg;
         }
         return $res;
     }
     /**
      * @param array $map
-     * @return PushOrderSettlementResponse
+     * @return SaveOmngGenerationtaskResponse
      */
     public static function fromMap($map = []) {
         $model = new self();
@@ -48,11 +48,11 @@ class PushOrderSettlementResponse extends Model {
         if(isset($map['result_msg'])){
             $model->resultMsg = $map['result_msg'];
         }
-        if(isset($map['trade_no'])){
-            $model->tradeNo = $map['trade_no'];
+        if(isset($map['result'])){
+            $model->result = $map['result'];
         }
-        if(isset($map['pre_pay_tn'])){
-            $model->prePayTn = $map['pre_pay_tn'];
+        if(isset($map['fail_msg'])){
+            $model->failMsg = $map['fail_msg'];
         }
         return $model;
     }
@@ -74,16 +74,19 @@ class PushOrderSettlementResponse extends Model {
      */
     public $resultMsg;
 
-    // 支付宝/微信/其他 平台订单号
+    // 创建结果
+    // 成功：success
+    // 创建中：creating
+    // 失败：fail
     /**
      * @var string
      */
-    public $tradeNo;
+    public $result;
 
-    // 预支付凭证，仅商家扫码场景为空
+    // 失败原因
     /**
      * @var string
      */
-    public $prePayTn;
+    public $failMsg;
 
 }
